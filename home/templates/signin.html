@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{{error}}
+
+<form action="/signin/" method="POST"> <!-- Redirecciona a pag signin y post envia los datos de manera oculta-->
+    {% csrf_token %}
+{{form.as_p}}
+<button>
+    Ingresar
+</button>
+</form>
+{% endblock %}

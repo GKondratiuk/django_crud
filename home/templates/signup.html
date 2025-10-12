@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+   
+{% block content %}
+
+    <form action="/signup/" method="POST"> <!-- va a buscar la ruta "signup" en urls.py y lo enviamos con un metodo "post que envia los campos de forma oculta"-->
+        {{error}} <!-- muestra el error que le pasamos desde views.py -->
+    
+        {%csrf_token%} <!-- token de seguridad que genera django para evitar ataques csrf-->
+        {{form.as_p}} <!-- muestra el formulario que le pasamos desde views.py, as_p lo muestra en parrafos-->
+
+        <button>
+            Registrarse <!-- apreta el boton y se activa la "action" -->
+        </button>
+    </form>
+
+{% endblock %}
+    
+  
