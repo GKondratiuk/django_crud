@@ -1,0 +1,18 @@
+# Entornos virtuales
+venv/
+.env/
+venv
+
+# Archivos de compilación
+__pycache__/
+*.py[cod]
+
+# Configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+#una vez creado el .gitignore tambien hay que ejecutar git rm -r --cached venv

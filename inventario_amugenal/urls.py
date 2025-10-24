@@ -24,4 +24,5 @@ urlpatterns = [
     path('inventario/', views.inventario, name='inventario') ,
     path('logout/', views.signout, name='logout') ,
     path('signin/', views.signin, name='signin') ,
+    path('agregar/elementos/',views.agregar_elementos, name='agregar_elementos'),
 ]

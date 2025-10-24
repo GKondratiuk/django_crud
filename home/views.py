@@ -5,9 +5,12 @@ from django.contrib.auth.models import User #creacion de usuario
 from django.http import HttpResponse #para devolver respuestas http
 from django.contrib.auth import login,logout, authenticate #para guardar los registros de sesion del usuario(coockies) // cerrar sesion // autentificar, corroborar los datos y loguear
 from django.db import IntegrityError #para manejar errores de integridad
+from .forms import elementos_formulario #importamos modelo de formulario
+from .models import Objeto
 # Create your views here.
 def home (request):
-    return render(request,'home.html')
+    objetos = Objeto.objects.all()
+    return render(request,'inventario.html', {'objetos': objetos})
 
 def signup(request):
     
@@ -54,9 +57,29 @@ def signin(request):
             login(request,user) #loguea al usuario
             return redirect('inventario')  #nos envia al inventario
             
-    
-
-
 def inventario(request):
-    return render(request,'inventario.html')
+    objetos = Objeto.objects.filter(user=request.user)
+    return render(request,'inventario.html',{'objetos': objetos})
+
+def agregar_elementos(request):
+    
+    if request.method == 'GET':
+        return render(request, 'elementos.html',{
+            'form': elementos_formulario
+    })  
+    else:
+        try:
+            form = elementos_formulario(request.POST)
+            new_element = form.save(commit = False)
+            new_element.user = request.user
+            new_element.save()
+            print(new_element)
+            return redirect ('inventario')
+
+        except ValueError:
+            return render(request, 'elementos.html',{
+                'form': elementos_formulario,
+                'error': 'Por favor agregar un dato valido'
+    })  
+
 

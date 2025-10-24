@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<h1>Crear objeto</h1>
+
+{{error}}
+
+<form action="/agregar/elementos/" method="POST"> <!-- En action se agrega el url-->
+    {% csrf_token %}
+    {{form.as_p}}
+
+        <button>
+            Guardar
+        </button>
+        </form>
+
+    {% endblock %}

@@ -4,4 +4,16 @@
 
 <h1>Inventario</h1>
 
+<ul>
+    {% for objeto in objetos %}
+    <li>
+        <h1>
+            {{objeto.title}}
+        </h1>
+        <p>{{objeto.description}}</p>
+        <p>{{objeto.user.username}}</p>
+    </li>
+    {% endfor %}
+</ul>
+
 {% endblock %}
