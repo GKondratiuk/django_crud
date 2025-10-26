@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="alert alert-warning shadow p-4">
+    <h4>¿Eliminar "{{ gestoria.nombre|default:mueble.nombre }}"?</h4>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% if gestoria %}{% url 'home' %}{% else %}{% url 'muebles_por_gestoria' mueble.gestoria.id %}{% endif %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
